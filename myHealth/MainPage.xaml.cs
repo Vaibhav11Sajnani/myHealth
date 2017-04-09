@@ -22,9 +22,51 @@ namespace myHealth
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public class Records
+        {
+            public string Name
+            {
+                get;
+                set;
+            }
+            public int Amount
+            {
+                get;
+                set;
+            }
+        }
+
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        private void Click_start(object sender, RoutedEventArgs e)
+        {
+            Random rand = new Random();
+            List<Records> records = new List<Records>();
+            records.Add(new Records()
+    {
+                Name = "Suresh", Amount = rand.Next(0, 200)
+    });
+            records.Add(new Records()
+    {
+                Name = "C# Corner", Amount = rand.Next(0, 200)
+    });
+            records.Add(new Records()
+    {
+                Name = "Sam", Amount = rand.Next(0, 200)
+    });
+            records.Add(new Records()
+    {
+                Name = "Sri", Amount = rand.Next(0, 200)
+    });
+            (lineChart.Series[0] as WinRTXamlToolkit.Controls.DataVisualization.Charting.LineSeries).ItemsSource = records;
+        }
+
+        private void nav_click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(KEY));
         }
     }
 }
