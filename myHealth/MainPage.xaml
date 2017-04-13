@@ -4,18 +4,32 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
     xmlns:local="using:myHealth"
+    xmlns:telerikChart="using:Telerik.UI.Xaml.Controls.Chart"
+    xmlns:telerikChartPrimitives="using:Telerik.UI.Xaml.Controls.Chart.Primitives"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
+    
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot HorizontalAlignment="Center">
             <PivotItem Header="ECG">
                 <StackPanel>
-                    <!--This viewbox is for Graph-->
-                    <Viewbox>
+                    <telerikChart:RadCartesianChart x:Name="eChart">
+                        
+                        <telerikChart:RadCartesianChart.HorizontalAxis>
+                            <telerikChart:CategoricalAxis/>
+                        </telerikChart:RadCartesianChart.HorizontalAxis>
+                        
+                        <telerikChart:RadCartesianChart.VerticalAxis>
+                            <telerikChart:LinearAxis/>
+                        </telerikChart:RadCartesianChart.VerticalAxis>
 
-                    </Viewbox>
+                        <telerikChart:LineSeries ItemsSource="{Binding data}"/>
+
+                    </telerikChart:RadCartesianChart>
+                    
+                    
                     <Button Name="Start_Monitoring" Content="Start Monitoring"
                             HorizontalAlignment="Center"/>
                 </StackPanel>

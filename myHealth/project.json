@@ -1,6 +1,7 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+    "Telerik.UI.for.UniversalWindowsPlatform": "1.0.0.1",
     "WinRTXamlToolkit.Controls.DataVisualization.UWP": "2.3.0"
   },
   "frameworks": {
