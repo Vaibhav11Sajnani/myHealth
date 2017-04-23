@@ -10,11 +10,10 @@
     xmlns:telerikInput ="using:Telerik.UI.Xaml.Controls.Input"
     xmlns:telerikRangeSlider ="using:Telerik.UI.Xaml.Controls.Input.RangeSlider"
     xmlns:telerikRrangeSliderPrimitives ="using:Telerik.UI.Xaml.Controls.Primitives.RangeSlider"
+    xmlns:data="using:myHealth.Models"
     xmlns:telerikPrimitives="using:Telerik.UI.Xaml.Controls.Primitives"
-    xmlns:rangeSlider ="using:RangeSlider"
     mc:Ignorable="d"
-    xmlns:telerikDataViz="using:Telerik.UI.Xaml.Controls.DataVisualization"
-    xmlns:local="using:Gauge.Gallery">
+    xmlns:telerikDataViz="using:Telerik.UI.Xaml.Controls.DataVisualization">
     
     
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -31,13 +30,17 @@
                             <telerikChart:LinearAxis/>
                         </telerikChart:RadCartesianChart.VerticalAxis>
 
-                        <telerikChart:LineSeries ItemsSource="{Binding data}"/>
+                        <telerikChart:LineSeries ItemsSource="{Binding}"/>
 
                     </telerikChart:RadCartesianChart>
                     
                     
                     <Button Name="Start_Monitoring" Content="Start Monitoring"
-                            HorizontalAlignment="Center"/>
+                            HorizontalAlignment="Center"
+                            Click="Start_Monitoring_Click"/>
+
+                    <TextBox Name="test" />
+                    <Button Name="test_button" Content="Test Data" Click="test_button_Click"/>
                 </StackPanel>
             </PivotItem>
             <PivotItem Header="Controls">
@@ -89,13 +92,42 @@
                 </StackPanel>
                 
             </PivotItem>
+            <PivotItem Header="Devices">
+                <ListView ItemsSource="{x:Bind device}" HorizontalAlignment="Center"
+                          ScrollViewer.VerticalScrollMode="Enabled">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="data:Device" >
+                            <StackPanel HorizontalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Project Name:" Margin="10" />
+                                    <TextBlock Text="{x:Bind name}" Margin="10"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10">
+                                    <TextBlock Text="Board Type:" Margin="10" />
+                                    <TextBlock Text="{x:Bind boardType}" Margin="10" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Status:" Margin="10" />
+                                    <TextBlock Text="{x:Bind status}" Margin="10" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Connection Type:" Margin="10"/>
+                                    <TextBlock Text="{x:Bind connectionType}" Margin="10" />
+                                </StackPanel>
+                                
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </PivotItem>
             <PivotItem Header="Settings">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <TextBlock Text="API KEY:  " Margin="10"/>
-                        <TextBox PlaceholderText="Enter API Key" Margin="10"  HorizontalAlignment="Center"/>
+                        <TextBox Name="apikey" PlaceholderText="Enter API Key" Margin="10"  HorizontalAlignment="Center"/>
                     </StackPanel>
-                    <Button Name="api_submit" Content="Submit" HorizontalAlignment="Center" Margin="10"/>
+                    <Button Name="api_submit" Content="Submit" HorizontalAlignment="Center" Margin="10"
+                            Click="api_submit_Click"/>
                 </StackPanel>
             </PivotItem>
         </Pivot>
