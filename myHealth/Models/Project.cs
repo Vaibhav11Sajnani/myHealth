@@ -41,19 +41,7 @@ namespace myHealth.Models
             public int heartbeatInterval { get; set; }
         }
 
-        public class PinsStorage
-        {
-            public string __invalid_name__a14 { get; set; }
-            public string __invalid_name__d7 { get; set; }
-            public string __invalid_name__d8 { get; set; }
-            public string __invalid_name__d3 { get; set; }
-            public string __invalid_name__d4 { get; set; }
-            public string __invalid_name__d5 { get; set; }
-            public string __invalid_name__d6 { get; set; }
-            public string __invalid_name__v0 { get; set; }
-            public string __invalid_name__d1 { get; set; }
-            public string __invalid_name__d2 { get; set; }
-        }
+        
 
 
     public int id { get; set; }

@@ -26,12 +26,15 @@ namespace myHealth
     {
         ObservableCollection<double> data = new ObservableCollection<double>();
         public Project Pro { get; set; }
+        public PinsStorage pinData { get; set; }
         public List<Device> device { get; set; }
 
         public MainPage()
         {
             this.InitializeComponent();
             device = DataManager.project.devices;
+            pinData = DataManager.project.pinsStorage;
+            
         }
 
         private async void test_button_Click(object sender, RoutedEventArgs e)
@@ -51,6 +54,96 @@ namespace myHealth
         private void Start_Monitoring_Click(object sender, RoutedEventArgs e)
         {
             this.eChart.DataContext = data;
+        }
+
+        private async void roomLight_Toggled(object sender, RoutedEventArgs e)
+        {
+            string pin = "D4";
+            double value;
+            ToggleSwitch toggleSwitch = sender as ToggleSwitch;
+            if (toggleSwitch != null)
+            {
+                if (toggleSwitch.IsOn == true)
+                {
+                    value = 1;
+                    NetworkService.WritePin(pin, value);
+                    //await NetworkService.WritePin(pin, value);
+                }
+                else
+                {
+                    value = 0;
+                    NetworkService.WritePin(pin, value);
+                    //await NetworkService.WritePin(pin, value);
+                }
+            }
+            
+
+        }
+
+        private async void TableLamp_Toggled(object sender, RoutedEventArgs e)
+        {
+            string pin = "D6";
+            double value;
+            ToggleSwitch toggleSwitch = sender as ToggleSwitch;
+            if (toggleSwitch != null)
+            {
+                if (toggleSwitch.IsOn == true)
+                {
+                    value = 1;
+                    NetworkService.WritePin(pin, value);
+                    //await NetworkService.WritePin(pin, value);
+                }
+                else
+                {
+                    value = 0;
+                    NetworkService.WritePin(pin, value);
+                    //await NetworkService.WritePin(pin, value);
+                }
+            }
+        }
+
+        private async void Wardrobe_Toggled(object sender, RoutedEventArgs e)
+        {
+            string pin = "D3";
+            double value;
+            ToggleSwitch toggleSwitch = sender as ToggleSwitch;
+            if (toggleSwitch != null)
+            {
+                if (toggleSwitch.IsOn == true)
+                {
+                    value = 1;
+                    NetworkService.WritePin(pin, value);
+                    //await NetworkService.WritePin(pin, value);
+                }
+                else
+                {
+                    value = 0;
+                    NetworkService.WritePin(pin, value);
+                    //await NetworkService.WritePin(pin, value);
+                }
+            }
+        }
+
+        private void Fan_Toggled(object sender, RoutedEventArgs e)
+        {
+            string pin = "D2";
+            double value;
+            ToggleSwitch toggleSwitch = sender as ToggleSwitch;
+            if (toggleSwitch != null)
+            {
+                if (toggleSwitch.IsOn == true)
+                {
+                    value = 1;
+                    NetworkService.WritePin(pin, value);
+                    //await NetworkService.WritePin(pin, value);
+                }
+                else
+                {
+                    value = 0;
+                    NetworkService.WritePin(pin, value);
+                    //await NetworkService.WritePin(pin, value);
+                }
+            }
         }
     }
 }
